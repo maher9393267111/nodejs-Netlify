@@ -1,7 +1,14 @@
 const express = require("express");
 const serverless = require("serverless-http");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+
 
 const app = express();
+app.use(cors());
+app.use(express.json({ limit: '30mb', extended: true }))
+app.use(express.urlencoded({ limit: '30mb', extended: true }))
+
 const router = express.Router();
 
 router.get("/", (req, res) => {
